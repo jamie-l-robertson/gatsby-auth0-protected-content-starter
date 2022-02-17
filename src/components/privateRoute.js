@@ -6,8 +6,11 @@ const PrivateRoute = ({ component: Component, location, accessGroup, ...rest }) 
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated() || accessGroup && accessGroup !== 'admin') {
-    navigate("/");
-    return null;
+    
+    if(typeof window !== "undefined") {
+      navigate("/");
+      return null;
+    }
   }
   
   return <Component {...rest} />

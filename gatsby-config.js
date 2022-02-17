@@ -41,19 +41,28 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-algolia`,
+      resolve: `gatsby-plugin-apollo`,
       options: {
-        appId: process.env.ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_API_KEY,
-        indexName: process.env.ALGOLIA_INDEX_NAME,
-        queries: require('./src/utils/algolia-queries'),
-        chunkSize: 1000,
-        enablePartialUpdates: true,
-        matchFields: ['slug', 'modified'],
-        concurrentQueries: true,
-        skipIndexing: false,
-        continueOnFailure: false,
+        uri: `${process.env.STORYBLOK_GRAPHQL_API}`,
+        headers: {
+          token: process.env.STORYBLOK_ACCESS_TOKEN
+        }
       }
     }
+    // {
+    //   resolve: `gatsby-plugin-algolia`,
+    //   options: {
+    //     appId: process.env.ALGOLIA_APP_ID,
+    //     apiKey: process.env.ALGOLIA_API_KEY,
+    //     indexName: process.env.ALGOLIA_INDEX_NAME,
+    //     queries: require('./src/utils/algolia-queries'),
+    //     chunkSize: 1000,
+    //     enablePartialUpdates: true,
+    //     matchFields: ['slug', 'modified'],
+    //     concurrentQueries: true,
+    //     skipIndexing: false,
+    //     continueOnFailure: false,
+    //   }
+    // }
   ]
 };

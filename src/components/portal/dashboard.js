@@ -4,8 +4,9 @@ import { Link } from "gatsby";
 import Login from "@components/login";
 
 const Dashboard = user => {
-  const { nickname, email_verified, picture, email } = user;  
-  const userGroup = user[`${process.env.AUTH0_NAMESPACE}/group`] || 'default';
+const { nickname, email_verified, picture, email } = user;  
+const userGroup = user[`${process.env.AUTH0_NAMESPACE}/group`] || '';
+const permissions = user[`${process.env.AUTH0_NAMESPACE}/permissions`] || false;
 
   return (
     <>
@@ -19,7 +20,7 @@ const Dashboard = user => {
         <li>Group: {userGroup}</li>
       </ul>
       <Login />
-      {userGroup === 'admin' && <Link to="/portal/admin">Admin area</Link>}
+      {permissions && <Link to="/portal/admin">Admin area</Link>}
     </>
   )
 };

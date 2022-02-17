@@ -1,8 +1,11 @@
 import React from "react";
 import { useAuth } from "react-use-auth";
 
- const Admin = () => {
-  const { isAuthenticated, user } = useAuth();
+const Admin = () => {
+const { isAuthenticated, user } = useAuth();
+const permissions = user[`${process.env.AUTH0_NAMESPACE}/permissions`] || false;
+
+if(!permissions) return <h1>Access denied!</h1>
 
   return (
     <>

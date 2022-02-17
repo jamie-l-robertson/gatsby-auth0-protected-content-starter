@@ -1,7 +1,7 @@
 import React from 'react';
 import SbEditable from 'storyblok-react';
 import GetQueryParameter from '@utils/getQueryParameter';
-import config from '../../gatsby-config';
+// import config from '../../gatsby-config';
 
 import Layout from "@components/layout";
 import DynamicComponent from '@components/DynamicComponent';
@@ -11,7 +11,8 @@ let sbConfig = {};
 let relations = '';
 
 const loadStoryblokBridge = function (cb) {
-  let sbConfigs = config.plugins.filter(item => item.resolve === 'gatsby-source-storyblok');
+  // let sbConfigs = config.plugins.filter(item => item.resolve === 'gatsby-source-storyblok');
+  let sbConfigs = {};
   let script = document.createElement('script');
 
   sbConfig = sbConfigs.length > 0 ? sbConfigs[0] : {};

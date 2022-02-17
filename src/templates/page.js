@@ -1,7 +1,7 @@
 import * as React from "react";
-import DynamicComponent from "@components/dynamicComponent";
+import DynamicComponent from "@components/DynamicComponent";
 
-import useStoryblok from "../utils/storyblok";
+import useStoryblok from "@utils/storyblok";
 
 const Page = ({ pageContext, location }) => { 
   let story = pageContext.story;

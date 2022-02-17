@@ -61,7 +61,7 @@ exports.createPages = ({ page, graphql, actions: { createPage} }) => {
       graphql(
         `{
           stories: allStoryblokEntry {
-            edges {
+            edges { 
               node {
                 id
                 name

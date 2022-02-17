@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby";
+import { Link, graphql } from "gatsby";
 import useStoryblok from "@utils/storyblok";
 import { sbEditable } from "@storyblok/storyblok-editable";
 import DynamicComponent from '@components/DynamicComponent';

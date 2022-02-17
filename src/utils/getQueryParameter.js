@@ -1,5 +1,5 @@
 const getQueryParameter =  val => {
-  var result = '';å
+  var result = '';
   var tmp = [];
 
   window.location.search

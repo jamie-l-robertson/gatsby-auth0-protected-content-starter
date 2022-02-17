@@ -12,16 +12,16 @@ import Admin from "../components/portal/admin";
 const Portal = () => {
   const { isAuthenticated, user } = useAuth();
 
-  if(!isAuthenticated()) navigate('/');
+  if((!isAuthenticated()) && (typeof window !== "undefined")) navigate('/');
 
-  const userGroup = user[`${process.env.AUTH0_NAMESPACE}/group`];
+  const isAdmin = user[`${process.env.AUTH0_NAMESPACE}/permissions`];
 
   return(
     <Layout>
       <Router basepath="/">
         <PrivateRoute path="/portal/profile" component={Dashboard} {...user} />
+        <PrivateRoute path="/portal/admin" component={Admin} isAdmin={isAdmin} />
         <PrivateRoute path="/portal" component={PortalLanding} {...user} />
-        <PrivateRoute path="/portal/admin" component={Admin} accessGroup={userGroup} />
       </Router>
     </Layout>
   )

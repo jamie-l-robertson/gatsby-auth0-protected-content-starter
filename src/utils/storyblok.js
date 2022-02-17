@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import StoryblokClient from "storyblok-js-client";
-import config from "../../gatsby-config";
-
-const sbConfig = config.plugins.find((item) => item.resolve === 'gatsby-source-storyblok');
 
 const Storyblok = new StoryblokClient({
-  accessToken: sbConfig.options.accessToken,
+  accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
   cache: {
     clear: "auto",
     type: "memory",
