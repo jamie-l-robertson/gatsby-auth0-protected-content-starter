@@ -1,8 +1,13 @@
-import { sbEditable } from "@storyblok/storyblok-editable";
-// import Teaser from "./teaser"
 import React from "react";
+import { sbEditable } from "@storyblok/storyblok-editable";
 
-const Components = {};
+import Page from '@contentTypes/page';
+import ContentPanel from "@components/contentPanel";
+
+const Components = {
+  page: Page, 
+  content_panel: ContentPanel
+};
 
 const DynamicComponent = ({ blok }) => {
   if (typeof Components[blok.component] !== 'undefined') {

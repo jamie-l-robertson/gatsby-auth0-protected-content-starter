@@ -8,6 +8,18 @@ module.exports = {
     author: ``,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          "@theme": "src/theme",
+          "@components": "src/components",
+          "@contentTypes": "src/contentTypes",
+          "@utils": "src/utils",
+        },
+        extensions: ["js"],
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {
@@ -24,7 +36,8 @@ module.exports = {
       options: {
         accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
         version: process.env.NODE_ENV === 'production' ? 'published' : 'draft',
-        localAssets: true
+        localAssets: true,
+        resolveRelations: [],
       }
     },
     {

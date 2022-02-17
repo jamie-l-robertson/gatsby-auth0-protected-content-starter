@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
-import Login from "../login";
+
+import Login from "@components/login";
 
 const Dashboard = user => {
   const { nickname, email_verified, picture, email } = user;  

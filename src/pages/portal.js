@@ -3,7 +3,7 @@ import { Router } from "@reach/router";
 import { useAuth } from "react-use-auth";
 import { navigate } from "gatsby";
 
-
+import Layout from "@components/layout";
 import PrivateRoute from "../components/privateRoute";
 import Dashboard from "../components/portal/dashboard";
 import PortalLanding from "../components/portal/portal";
@@ -17,11 +17,13 @@ const Portal = () => {
   const userGroup = user[`${process.env.AUTH0_NAMESPACE}/group`];
 
   return(
-    <Router basepath="/">
-      <PrivateRoute path="/portal/profile" component={Dashboard} {...user} />
-      <PrivateRoute path="/portal" component={PortalLanding} {...user} />
-      <PrivateRoute path="/portal/admin" component={Admin} accessGroup={userGroup} />
-    </Router>
+    <Layout>
+      <Router basepath="/">
+        <PrivateRoute path="/portal/profile" component={Dashboard} {...user} />
+        <PrivateRoute path="/portal" component={PortalLanding} {...user} />
+        <PrivateRoute path="/portal/admin" component={Admin} accessGroup={userGroup} />
+      </Router>
+    </Layout>
   )
 }
 
