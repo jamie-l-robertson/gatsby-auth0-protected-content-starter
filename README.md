@@ -13,8 +13,8 @@ git clone https://github.com/jamie-l-robertson/gatsby-auth0-protected-content-st
 You'll need Node and yarn installed on your machine to run this project. You can verify your installations by running these commands:
 
 ```bash
-node --v
-yarn --v
+node -v
+yarn -v
 ```
 
 If you don’t have `node` and `npm` installed, check out [nodejs.org](https://nodejs.org/) and install the correct version for your operating system. 
