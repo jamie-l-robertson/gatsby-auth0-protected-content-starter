@@ -16,6 +16,7 @@ module.exports = {
           "@components": "src/components",
           "@contentTypes": "src/contentTypes",
           "@utils": "src/utils",
+          "@hooks": "src/hooks"
         },
         extensions: ["js"],
       },

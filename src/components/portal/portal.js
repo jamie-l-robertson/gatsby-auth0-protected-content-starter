@@ -18,18 +18,17 @@ const PORTAL_LANDING_QUERY = gql`
 }
 `;
 
-const PortalLanding = user => {
-const { nickname } = user;  
-const userGroup = user[`${process.env.AUTH0_NAMESPACE}/group`] || 'default';
-const { data, loading, error } = useQuery(PORTAL_LANDING_QUERY, { variables: { userGroup: `portal/${userGroup}` }});
+const PortalLanding = (user = {}) => {
+const userAccess = user[`${process.env.AUTH0_PORTAL_ACCESS}`] || '';
+const userGroup = userAccess.filter(e => e !== 'admin');
 
+const { data, loading, error } = useQuery(PORTAL_LANDING_QUERY, { variables: { userGroup: `portal/${userGroup}` }});
 
 if (loading) return 'Loading...';
 
+if (error) return 'Oops!';
+
 const { content } = data.PageItems?.items[0] || [];
-
-console.log(data);
-
 
   return (
     <>

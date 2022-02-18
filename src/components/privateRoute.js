@@ -1,19 +1,9 @@
 import React from "react";
-import { navigate } from "gatsby";
-import { useAuth } from "react-use-auth";
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 
-const PrivateRoute = ({ component: Component, location, accessGroup, ...rest }) => {
-  const { isAuthenticated } = useAuth();
+const PrivateRoute = ({ component: Component, location, ...rest }) => <Component {...rest} />;
 
-  if (!isAuthenticated() || accessGroup && accessGroup !== 'admin') {
-    
-    if(typeof window !== "undefined") {
-      navigate("/");
-      return null;
-    }
-  }
-  
-  return <Component {...rest} />
-}
-
-export default PrivateRoute;
+export default withAuthenticationRequired(PrivateRoute, {
+  // Show a message while the user waits to be redirected to the login page.
+  onRedirecting: () => <div>Redirecting you to the login page...</div>,
+});

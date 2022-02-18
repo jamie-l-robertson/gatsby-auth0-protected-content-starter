@@ -1,11 +1,13 @@
 import React from "react";
-import { useAuth } from "react-use-auth";
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Admin = () => {
-const { isAuthenticated, user } = useAuth();
-const permissions = user[`${process.env.AUTH0_NAMESPACE}/permissions`] || false;
+const { isAuthenticated, user } = useAuth0();
+const permissions = user[`${process.env.AUTH0_PORTAL_ACCESS}`] || false;
 
-if(!permissions) return <h1>Access denied!</h1>
+console.log(user);
+
+if(!permissions.includes('admin')) return <h1>Access denied!</h1>
 
   return (
     <>

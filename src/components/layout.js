@@ -1,8 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby";
-import { useAuth } from "react-use-auth";
+import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from "gatsby";
-
 import Login from "@components/login";
 
 const Layout = ({ children, ...rest }) => {
@@ -20,12 +19,12 @@ const Layout = ({ children, ...rest }) => {
   //   }
   // `)
 
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user } = useAuth0();
 
   return (
     <div className="wrapper">
       HEADER
-      <h1>Hi {isAuthenticated() ? user.name : "there"}</h1> 
+      <h1>Hi {isAuthenticated ? user.name : "there"}</h1> 
       <Login />
       <main id="main-content">{children}</main>
       FOOTER

@@ -1,19 +1,18 @@
 import * as React from "react";
-import { navigate } from "gatsby";
+import { Auth0Provider } from '@auth0/auth0-react';
+import { navigate } from 'gatsby';
 
-import { AuthConfig } from "react-use-auth";
-import { Auth0 } from "react-use-auth/auth0";
+const onRedirectCallback = (appState) => {
+  // Use Gatsby's navigate method to replace the url
+  navigate(appState?.returnTo || '/', { replace: true });
+};
 
 export const wrapRootElement = ({ element }) => (
-  <>
-    <AuthConfig
-        navigate={navigate}
-        authProvider={Auth0}
-        params={{
-            domain: process.env.AUTH0_DOMAIN,
-            clientID: process.env.AUTH0_CLIENTID
-        }}
-    />
+  <Auth0Provider
+    domain={process.env.AUTH0_DOMAIN}
+    clientId={process.env.AUTH0_CLIENTID}
+    redirectUri={process.env.AUTH0_CALLBACK}
+    onRedirectCallback={onRedirectCallback}>
     {element}
-  </>
+  </Auth0Provider>
 );
