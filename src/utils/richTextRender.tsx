@@ -1,7 +1,13 @@
 import React from 'react';
 import { render } from 'storyblok-rich-text-react-renderer';
 
-const RichTextRender = props => {
+type RichTextRenderType = {
+  content?: object,
+  copy?: object,
+  text?: object 
+}
+
+const RichTextRender = (props:RichTextRenderType) => {
 
   if (!props) return false;
 

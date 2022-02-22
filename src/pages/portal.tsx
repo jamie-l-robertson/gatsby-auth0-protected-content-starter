@@ -3,7 +3,7 @@ import { Router } from "@reach/router";
 import { useAuth0 } from '@auth0/auth0-react';
 import { navigate } from "gatsby";
 
-import Layout from "@components/layout";
+import Layout from "../components/layout";
 import PrivateRoute from "../components/privateRoute";
 import Dashboard from "../components/portal/dashboard";
 import PortalLanding from "../components/portal/portal";
@@ -12,9 +12,10 @@ import Admin from "../components/portal/admin";
 const Portal = () => {
   const { isAuthenticated, user } = useAuth0();
 
+  // @TODO: investigate error with navigate when not logged in.
   if((!isAuthenticated) && (typeof window !== "undefined")) navigate('/');
 
-  const user_access = user[`${process.env.AUTH0_PORTAL_ACCESS}`];
+  const user_access = user && user[`${process.env.AUTH0_PORTAL_ACCESS}`];
 
   return(
     <Layout>

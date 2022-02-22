@@ -1,8 +1,20 @@
 import React from "react";
 import SbEditable from 'storyblok-react';
-import Content from '@components/content';
+import Content from '../../components/content';
 
-const ContentPanel = ({ blok }) => {
+interface IContentPanel {
+  blok: {
+    _uid: string,
+    component: string,
+    title: string,
+    content: object,
+    link?: {
+      url: string
+    }
+  }
+};
+
+const ContentPanel = ({ blok }: IContentPanel) => {
   return (
     <SbEditable content={blok}>
       <h1>{blok.title}</h1>

@@ -1,10 +1,7 @@
 import React from 'react';
-import { useAuth } from 'react-use-auth';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const Login = () => {
-  // const { isAuthenticated, login, logout } = useAuth();
-
   const {
     isLoading,
     isAuthenticated,

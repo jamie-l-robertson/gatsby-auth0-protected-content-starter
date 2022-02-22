@@ -1,8 +1,16 @@
-import React from "react";
-import RichTextRender from "@utils/richTextRender";
+import * as React from "react";
+import RichTextRender from "../../utils/richTextRender";
 import { markdownToRichtext } from "storyblok-markdown-richtext";
 
-const Content = ({ blok, type, ...rest }) => {
+interface IContent {
+  blok: {
+    content: object
+  },
+  type?: string,
+  rest?: any
+};
+
+const Content = ({ blok, type, ...rest }: IContent) => {
   // Check if we are using the markdown content panel or the default
   const rendered = type === 'content_panel_html' ? RichTextRender({ 
       content: markdownToRichtext(`${blok.content}`) 

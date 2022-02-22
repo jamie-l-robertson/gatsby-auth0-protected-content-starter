@@ -2,9 +2,14 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby";
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from "gatsby";
-import Login from "@components/login";
+import Login from "../components/login";
 
-const Layout = ({ children, ...rest }) => {
+interface ILayout {
+  children: any,
+  rest?: any
+}
+
+const Layout = ({ children, ...rest }:ILayout) => {
   // const { settings } = useStaticQuery(graphql`
   //   query Settings {
   //     settings: allStoryblokEntry(filter: { field_component: { eq: "settings" } }) {

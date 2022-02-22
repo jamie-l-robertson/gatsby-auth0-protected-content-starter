@@ -1,8 +1,16 @@
 import React from "react";
 import { Link } from "gatsby";
-import Login from "@components/login";
+import Login from "../login";
 
-const Dashboard = user => {
+interface IUser {
+  nickname: string,
+  email_verified: boolean,
+  picture: string,
+  email: string
+};
+
+const Dashboard = (user:IUser) => {
+
 const { nickname, email_verified, picture, email } = user;  
 const userGroup = user[`${process.env.AUTH0_NAMESPACE}/group`] || '';
 const permissions = user[`${process.env.AUTH0_PORTAL_ACCESS}`] || false;

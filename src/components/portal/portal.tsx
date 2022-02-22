@@ -1,6 +1,10 @@
 import React from "react";
 import { gql, useQuery } from '@apollo/client';
-import DynamicComponent from "@components/DynamicComponent";
+import DynamicComponent from "../DynamicComponent";
+
+interface IUser {
+  any: any
+}
 
 const PORTAL_LANDING_QUERY = gql`
  query Portal($userGroup: String!) {
@@ -18,7 +22,7 @@ const PORTAL_LANDING_QUERY = gql`
 }
 `;
 
-const PortalLanding = (user = {}) => {
+const PortalLanding = (user:IUser) => {
 const userAccess = user[`${process.env.AUTH0_PORTAL_ACCESS}`] || '';
 const userGroup = userAccess.filter(e => e !== 'admin');
 
@@ -32,9 +36,7 @@ const { content } = data.PageItems?.items[0] || [];
 
   return (
     <>
-       {content?.body.map( blok => {
-          return <DynamicComponent blok={blok} key={blok._uid} />
-        })}
+       {content?.body.map( blok => <DynamicComponent blok={blok} key={blok._uid} />)}
     </>
   )
 };

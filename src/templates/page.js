@@ -1,5 +1,5 @@
 import * as React from "react";
-import DynamicComponent from "@components/DynamicComponent";
+import DynamicComponent from "../components/DynamicComponent";
 
 import useStoryblok from "@utils/storyblok";
 
