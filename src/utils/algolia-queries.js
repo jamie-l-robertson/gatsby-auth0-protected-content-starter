@@ -1,5 +1,5 @@
 const searchQuery = `{
-  stories: allStoryblokEntry {
+  stories: allStoryblokEntry(filter: {lang: { ne: "es" }}) {
     edges { 
       node {
         id
