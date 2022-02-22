@@ -18,7 +18,7 @@ module.exports = {
           "@utils": "src/utils",
           "@hooks": "src/hooks"
         },
-        extensions: ["js"],
+        extensions: ["js", "tsx"],
       },
     },
     `gatsby-plugin-react-helmet`,
