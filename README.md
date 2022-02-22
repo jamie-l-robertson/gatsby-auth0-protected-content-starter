@@ -61,7 +61,19 @@ Once you have your Space setup, grab your API key from Space name > Settings > A
 
 ## Algolia
 
-WIP
+An algolia application will need setup, [sign up here](https://www.algolia.com), once application is created, add the required keys into your  `.env.development` (or `.env.production`) files.
+
+Search is index on `Gatsby build` and indexes the following:
+
+- objectID
+- slug
+- name
+- title
+- description
+- field_component
+- full_slug
+
+to expand this further, see `/src/utils/algolia-queries.js` for guidance.
 
 
 ## Run the app

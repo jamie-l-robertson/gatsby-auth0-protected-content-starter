@@ -1,37 +1,44 @@
-const searchQuery = `
-  query {
-    pages: allSitePage {
-      nodes {
-        # try to find a unique id for each node
-        # if this field is absent, it's going to
-        # be inserted by Algolia automatically
-        # and will be less simple to update etc.
-        objectID: id
-        component
-        path
-        componentChunkName
-        jsonName
-        internal {
-          type
-          contentDigest
-          owner
-        }
+const searchQuery = `{
+  stories: allStoryblokEntry {
+    edges { 
+      node {
+        id
+        name
+        slug
+        field_component
+        full_slug
+        content
       }
     }
   }
-`;
+}`;
+
+
+function pageToAlgoliaRecord({ node: { id, slug, name, content, ...rest }  }) {
+
+  const contentData = JSON.parse(content); 
+  
+  const title = contentData.seo?.title || '';
+  const description = contentData.seo?.description || '';
+
+  return {
+    objectID: id,
+    slug,
+    name,
+    title,
+    description,
+    ...rest,
+  }
+}
 
 const indexName = "Stories";
 
 const queries = [
   {
     query: searchQuery,
-    transformer: ({ data }) => data.pages.nodes, // optional
+    transformer: ({ data }) => data.stories.edges.map(pageToAlgoliaRecord),
     indexName,
-    settings: { attributesToSnippet: [`intro:20`] },
-    matchFields: ['slug', 'modified'],
-    mergeSettings: false,
-    queryVariables: {},
+    settings: { attributesToSnippet: [`intro:20`] }
   },
 ];
 
