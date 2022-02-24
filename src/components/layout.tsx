@@ -28,13 +28,15 @@ const Layout = ({ children, ...rest }:ILayout) => {
 
   return (
     <div className="wrapper">
-      HEADER
-      <h1>Hi {isAuthenticated ? user.name : "there"}</h1> 
-      <Login />
+      <header>
+        <h1>Hi {isAuthenticated ? user.name : "there"}</h1> 
+        <Login />
+      </header>
       <main id="main-content">{children}</main>
-      FOOTER
-      <Link to="/portal">Portal</Link>
-      <Link to="/portal/profile">Portal profile</Link>
+      <footer>
+        <Link to="/portal">Portal</Link>
+        <Link to="/portal/profile">Portal profile</Link>
+      </footer>
     </div>
   )
 }
